@@ -1,19 +1,19 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Cat {
+export class User {    
     @PrimaryGeneratedColumn()
     id: number
 
     @Column()
+    username: string
+
+    @Column()
+    email: string
+
+    @Column()
+    password: string
+
+    @Column()
     name: string
-
-    @Column()
-    age: number
-
-    @Column()
-    breed: string
-
-    @Column({ default: false })
-    isDeleted: boolean
 }

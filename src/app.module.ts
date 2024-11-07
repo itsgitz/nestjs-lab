@@ -1,23 +1,23 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CatsModule } from './cats/cats.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Cat } from './cats/entities/cat.entity';
+import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
+import { SequelizeModule } from '@nestjs/sequelize';
 
 @Module({
   controllers: [AppController],
   providers: [AppService],
   imports: [
-    CatsModule,
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: './database/database.sqlite',
-      entities: [
-        Cat
-      ],
-      autoLoadEntities: true
-    })
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
+    SequelizeModule.forRoot({
+      dialect: 'sqlite',
+      database: './src/database/database.sqlite',
+      autoLoadModels: true,
+    }),
+    UsersModule, 
   ],
 })
 export class AppModule {}
