@@ -16,9 +16,7 @@ export class UsersService {
   async create(createUserDto: CreateUserDto) {
     console.log('create user dto', createUserDto)
 
-    const user = await this.userModel.create({
-      ...createUserDto
-    })
+    const user = await this.userModel.create({...createUserDto})
     console.log('new user', user)
 
     return user;
@@ -29,15 +27,21 @@ export class UsersService {
     return users
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    const user = await this.userModel.findByPk(id)
+    return user
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    const remove = this.userModel.destroy({
+      where: {
+        id
+      }
+    })
+    return remove;
   }
 }

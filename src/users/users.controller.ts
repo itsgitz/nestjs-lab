@@ -21,13 +21,13 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async findAll() {
+    return await this.usersService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.usersService.findOne(+id);
   }
 
   @Patch(':id')
@@ -36,7 +36,11 @@ export class UsersController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const remove = await this.usersService.remove(+id)
+    if (remove === 0) {
+      return { deleted: false }
+    }
+    return { deleted: true }
   }
 }
