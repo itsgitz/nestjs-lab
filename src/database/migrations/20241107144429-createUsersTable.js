@@ -31,6 +31,21 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      isDeleted: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        //defaultValue: Sequelize.fn('NOW'),
+        allowNull: false
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        //defaultValue: Sequelize.fn('NOW'),
+        allowNull: false
       }
     })
   },

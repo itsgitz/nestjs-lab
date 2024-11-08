@@ -2,15 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/sequelize';
-import { User } from './models/user.model';
-import { Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User)
     private userModel: typeof User,
-    private sequelize: Sequelize
+    private sequelize: Sequelize,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -18,7 +18,7 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
-    const users = await this.userModel.findAll() 
+    const users = await this.userModel.findAll()
     return users
   }
 

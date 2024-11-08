@@ -1,19 +1,19 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Model, Column, Table } from 'sequelize-typescript';
 
-@Entity()
-export class User {    
-    @PrimaryGeneratedColumn()
-    id: number
+@Table
+export class User extends Model {
+  @Column
+  username: string;
 
-    @Column()
-    username: string
+  @Column
+  email: string;
 
-    @Column()
-    email: string
+  @Column
+  password: string;
 
-    @Column()
-    password: string
+  @Column
+  name: string;
 
-    @Column()
-    name: string
+  @Column({ defaultValue: false })
+  isDeleted: boolean;
 }

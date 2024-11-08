@@ -4,20 +4,17 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { databaseConfig } from './config/database.app.config';
 
 @Module({
   controllers: [AppController],
   providers: [AppService],
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true,
     }),
-    SequelizeModule.forRoot({
-      dialect: 'sqlite',
-      database: './src/database/database.sqlite',
-      autoLoadModels: true,
-    }),
-    UsersModule, 
+    SequelizeModule.forRoot(databaseConfig),
+    UsersModule,
   ],
 })
 export class AppModule {}
