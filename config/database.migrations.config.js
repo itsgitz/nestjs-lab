@@ -1,7 +1,7 @@
 const fs = require('fs')
 module.exports = {
   "local": {
-    "storage": "./src/database/database.sqlite",
+    "storage": "./database/database.sqlite",
     "dialect": "sqlite"
   },
   "development": {

@@ -17,7 +17,8 @@ export class UsersController {
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    return await this.usersService.create(createUserDto);
+    const id = await this.usersService.create(createUserDto); 
+    return { id }
   }
 
   @Get()
@@ -31,16 +32,19 @@ export class UsersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    const affected = await this.usersService.update(+id, updateUserDto);  
+    return affected;
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    const remove = await this.usersService.remove(+id)
-    if (remove === 0) {
-      return { deleted: false }
+    const affected = await this.usersService.remove(+id)
+
+    if (affected === 0) {
+      return { result: false }
     }
-    return { deleted: true }
+    
+    return { result: true }
   }
 }

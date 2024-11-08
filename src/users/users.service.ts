@@ -13,35 +13,38 @@ export class UsersService {
     private sequelize: Sequelize,
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
-    console.log('create user dto', createUserDto)
+  async create(createUserDto: CreateUserDto): Promise<number | null> {
+    console.log('create user dto', createUserDto);
+    const user = await this.userModel.create({ ...createUserDto });
 
-    const user = await this.userModel.create({...createUserDto})
-    console.log('new user', user)
-
-    return user;
+    return user.id;
   }
 
   async findAll(): Promise<User[]> {
-    const users = await this.userModel.findAll()
-    return users
+    const users = await this.userModel.findAll();
+    return users;
   }
 
   async findOne(id: number) {
-    const user = await this.userModel.findByPk(id)
-    return user
+    const user = await this.userModel.findByPk(id);
+    return user;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  async remove(id: number) {
-    const remove = this.userModel.destroy({
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    return await this.userModel.update({
+      ...updateUserDto,
+    }, {
       where: {
         id
       }
     })
-    return remove;
+  }
+
+  async remove(id: number) {
+    return await this.userModel.destroy({
+      where: {
+        id,
+      },
+    });
   }
 }
