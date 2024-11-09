@@ -27,4 +27,9 @@ export class CatsService {
 
     return cats;
   }
+
+  async findOne(id: string): Promise<ICat> {
+    const cat = await this.catModel.findByPk(id)
+    return cat
+  }
 }
