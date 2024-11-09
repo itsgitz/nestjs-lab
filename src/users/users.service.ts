@@ -4,9 +4,12 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import { User } from './entities/user.entity';
+import { IUser } from './interfaces/user.interface';
 
 @Injectable()
 export class UsersService {
+  private readonly users: IUser[] = [];
+
   constructor(
     @InjectModel(User)
     private userModel: typeof User,
@@ -31,13 +34,16 @@ export class UsersService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    return await this.userModel.update({
-      ...updateUserDto,
-    }, {
-      where: {
-        id
-      }
-    })
+    return await this.userModel.update(
+      {
+        ...updateUserDto,
+      },
+      {
+        where: {
+          id,
+        },
+      },
+    );
   }
 
   async remove(id: number) {

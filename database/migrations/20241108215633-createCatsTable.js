@@ -11,7 +11,8 @@ module.exports = {
      */
     await queryInterface.createTable('cats', {
       id: {
-        type: Sequelize.UUIDV4,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         allowNull: false
       },

@@ -18,7 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "migration:run:local": "npx sequelize-cli db:migrate --env local"
+    "migration:run:local": "npx sequelize-cli db:migrate --env local",
+    "migration:undo:local": "npx sequelize-cli db:migrate:undo --env local"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
