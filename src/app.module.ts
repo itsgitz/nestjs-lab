@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { databaseConfig } from '../config/database.app.config';
+import { databaseConfig } from '@config/database.app.config';
 import { CatsModule } from './cats/cats.module';
 
 @Module({
@@ -14,7 +14,7 @@ import { CatsModule } from './cats/cats.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    SequelizeModule.forRoot(databaseConfig),
+    SequelizeModule.forRoot(databaseConfig(false)),
     UsersModule,
     CatsModule,
   ],

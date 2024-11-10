@@ -12,7 +12,7 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto, createUserSchema } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ZodValidationPipe } from 'src/validation/validation.pipe';
+import { ZodValidationPipe } from '@validation/zod-validation/zod-validation.pipe';
 
 @Controller('users')
 export class UsersController {

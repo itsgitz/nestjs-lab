@@ -7,8 +7,6 @@ export class AppController {
 
   @Get()
   home() {
-    return {
-      message: this.appService.home(),
-    };
+    return this.appService.home();
   }
 }
