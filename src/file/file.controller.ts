@@ -32,6 +32,8 @@ export class FileController {
       throw new HttpException('No file uploaded!', HttpStatus.BAD_REQUEST);
     }
 
+    console.log('file', file);
+
     return {
       originalName: file.originalname,
       mimeType: file.mimetype,
