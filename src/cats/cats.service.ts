@@ -29,7 +29,7 @@ export class CatsService {
   }
 
   async findOne(id: string): Promise<ICat> {
-    const cat = await this.catModel.findByPk(id)
-    return cat
+    const cat = await this.catModel.findByPk(id);
+    return cat;
   }
 }

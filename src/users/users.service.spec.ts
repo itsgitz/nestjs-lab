@@ -9,10 +9,7 @@ describe('UsersService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        SequelizeModule.forRoot(databaseConfig(true)),
-        UsersModule
-      ]
+      imports: [SequelizeModule.forRoot(databaseConfig(true)), UsersModule],
     }).compile();
 
     service = module.get<UsersService>(UsersService);

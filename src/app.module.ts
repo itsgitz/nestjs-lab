@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { databaseConfig } from '@config/database.app.config';
 import { CatsModule } from './cats/cats.module';
+import { FileModule } from './file/file.module';
 
 @Module({
   controllers: [AppController],
@@ -17,6 +18,7 @@ import { CatsModule } from './cats/cats.module';
     SequelizeModule.forRoot(databaseConfig(false)),
     UsersModule,
     CatsModule,
+    FileModule,
   ],
 })
 export class AppModule {}
